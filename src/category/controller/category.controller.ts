@@ -1,11 +1,16 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
 import { CategoryService } from '../services/category.service';
 import { CreateCategoryDto } from "../dto/create-category.dto";
+import { RoleGuard } from "../../auth/guards/role.guard";
+import { Roles } from "../../auth/decorator/role.decorator";
+import { Role } from "../../user/entities/role.entity";
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  @UseGuards(RoleGuard)
+  @Roles(Role.ADMIN)
   @Post()
   create(@Body() category: CreateCategoryDto){
     return this.categoryService.create(category)

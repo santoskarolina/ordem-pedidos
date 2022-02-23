@@ -18,13 +18,15 @@ export class UserController {
     return this.userService.create(user)
   }
 
-  @UseGuards(JwtLocalGuard)
+  @UseGuards(RoleGuard)
+  @Roles(Role.USER)
   @Post(':id/add-address')
   addAddress(@Body() address: CreateAddressDto, @Param('id') user_id: number){
     return this.userService.addAddress(user_id, address)
   }
 
   @UseGuards(RoleGuard)
+  @Roles(Role.USER)
   @Get('my-profile')
   findOne(@Request() request){
     return this.userService.findOne(request.user)
