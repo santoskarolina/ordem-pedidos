@@ -79,7 +79,7 @@ export class UserService {
       where: {
         email: user_request.email
       },
-      select: [ 'user_id', 'name', 'email', 'phone', 'cpf', 'role']
+      select: [ 'user_id', 'name', 'email', 'phone', 'cpf']
     })
 
     if(!user) {
@@ -96,7 +96,7 @@ export class UserService {
 
   find(){
     return this.userRepository.find({select: [
-      'user_id', 'name', 'email', 'phone', 'cpf', 'role'
+      'user_id', 'name', 'email', 'phone', 'cpf'
     ]})
   }
 
@@ -104,9 +104,11 @@ export class UserService {
    const user =  await this.userRepository.findOne({
       where: {
         email: email
-      }
+      },
+     relations: ['profile']
     })
 
-    return user
+    const profile = user.profile.map(p => p.role)
+    return profile
   }
 }

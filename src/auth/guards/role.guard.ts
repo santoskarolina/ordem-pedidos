@@ -52,7 +52,9 @@ export class RoleGuard extends JwtLocalGuard implements CanActivate {
     const request = context.switchToHttp().getRequest<RequestWithUserDto>();
     const user = request.user;
     const userWithRole = await this.userService.findUserWithRole(user.email)
+
+    console.log(userWithRole)
     // return requiredRoles.some((role) => user.roles?.includes(role));
-    return requiredPermissions.every((role) => userWithRole.role?.includes(role));
+    return requiredPermissions.every((role) => userWithRole.includes(role));
   }
 }

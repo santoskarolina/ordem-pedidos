@@ -1,4 +1,6 @@
 import { Role } from "../entities/role.entity";
+import { Profiler } from "inspector";
+import { Profile } from "../../profile/entities/profile.entity";
 
 export class CreateUserDto {
 
@@ -7,5 +9,5 @@ export class CreateUserDto {
   phone: string
   cpf: string
   password: string
-  role: Role
+  profile: Profile[]
 }

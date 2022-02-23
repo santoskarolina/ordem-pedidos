@@ -1,7 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Address } from "../../address/entities/address.entity";
 import { Cart } from "../../cart/entities/cart.entity";
-import { Role } from "./role.entity";
+import { Profile } from "../../profile/entities/profile.entity";
 
 @Entity({name:'user',schema:'shopping_order'})
 export class User {
@@ -30,11 +30,17 @@ export class User {
   @OneToMany(type =>Cart, order => order.user)
   orders: Cart[]
 
-  @Column({
-    type: 'enum',
-    enum: [Role.USER, Role.ADMIN],
-    nullable: false,
-    default: Role.USER
+  @ManyToMany(type => Profile)
+  @JoinTable({
+    name: 'user_profile',
+    joinColumn: {
+      name: "user",
+      referencedColumnName: "user_id"
+    },
+    inverseJoinColumn: {
+      name: "profile",
+      referencedColumnName: "profile_id"
+    }
   })
-  role: Role
+  profile: Profile[]
 }
