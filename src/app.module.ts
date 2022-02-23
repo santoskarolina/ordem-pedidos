@@ -12,6 +12,7 @@ import { OrderItemModule } from './order-item/order-item.module';
 import { CartModule } from './cart/cart.module';
 import { AuthModule } from './auth/auth.module';
 import { CaslModule } from './casl/casl.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { CaslModule } from './casl/casl.module';
     CartModule,
     AuthModule,
     CaslModule,
+    ProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService,],

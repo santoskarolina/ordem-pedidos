@@ -32,9 +32,9 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: Role,
+    enum: [Role.USER, Role.ADMIN],
     nullable: false,
-
+    default: Role.USER
   })
   role: Role
 }
