@@ -9,8 +9,8 @@ import { Role } from "../../user/entities/role.entity";
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  // @UseGuards(RoleGuard)
-  // @Roles(Role.ADMIN)
+  @UseGuards(RoleGuard)
+  @Roles(Role.ADMIN)
   @Post()
   create(@Body() product: CreateProductDto ){
     return this.productService.create(product)

@@ -47,7 +47,6 @@ import { AuthorizationModule } from './authorization/authorization.module';
     AuthorizationModule,
   ],
   controllers: [AppController],
-  providers: [AppService
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

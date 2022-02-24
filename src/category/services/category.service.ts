@@ -27,4 +27,20 @@ export class CategoryService {
   find(){
     return this.repository.find()
   }
+
+  async findOneWithProducts(category_id: number){
+    const category = await this.repository.findOne(category_id, {
+      select: ['category_id'],
+      relations: ['products']
+    })
+
+    if(!category) {
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: 'not found',
+        message: 'Category not found.'
+      }, HttpStatus.BAD_REQUEST)
+    }
+    return category
+  }
 }

@@ -29,7 +29,7 @@ export class ProductService {
   }
 
   async findOne(id:number){
-    const product = await  this.repository.findOne(id)
+    const product = await this.repository.findOne(id)
     return product
   }
 }
