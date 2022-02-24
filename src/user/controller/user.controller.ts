@@ -5,8 +5,8 @@ import { CreateAddressDto } from "../../address/dto/addredd.dto";
 import { JwtLocalGuard } from "../../auth/guards/jwt-auth.guard";
 // import RoleGuard from "../../auth/guards/role.guard";
 import { Role } from "../entities/role.entity";
-import { Roles } from "../../auth/decorator/role.decorator";
-import { RoleGuard } from "../../auth/guards/role.guard";
+import { Roles } from "../../authorization/decorator/role.decorator";
+import { RoleGuard } from "../../authorization/guards/role.guard";
 // import { RoleGuard } from "../../auth/guards/role.guard";
 
 @Controller('user')

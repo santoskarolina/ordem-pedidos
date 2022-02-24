@@ -11,8 +11,11 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { OrderItemModule } from './order-item/order-item.module';
 import { CartModule } from './cart/cart.module';
 import { AuthModule } from './auth/auth.module';
-import { CaslModule } from './casl/casl.module';
 import { ProfileModule } from './profile/profile.module';
+import { JwtLocalGuard } from "./auth/guards/jwt-auth.guard";
+import { RoleGuard } from "./authorization/guards/role.guard";
+import { APP_GUARD } from "@nestjs/core";
+import { AuthorizationModule } from './authorization/authorization.module';
 
 @Module({
   imports: [
@@ -40,10 +43,11 @@ import { ProfileModule } from './profile/profile.module';
     OrderItemModule,
     CartModule,
     AuthModule,
-    CaslModule,
     ProfileModule,
+    AuthorizationModule,
   ],
   controllers: [AppController],
-  providers: [AppService,],
+  providers: [AppService
+  ],
 })
 export class AppModule {}

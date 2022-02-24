@@ -1,38 +1,11 @@
 import { CanActivate, ExecutionContext, Injectable, mixin, Type } from "@nestjs/common";
-import { RequestWithUserDto } from "../dto/request-with-user.dto";
+import { RequestWithUserDto } from "../../auth/dto/request-with-user.dto";
 import { Role } from "../../user/entities/role.entity";
-import { AuthGuard } from "@nestjs/passport";
 import { UserService } from "../../user/services/user.service";
-import { JwtLocalGuard } from "./jwt-auth.guard";
+import { JwtLocalGuard } from "../../auth/guards/jwt-auth.guard";
 import { Reflector } from "@nestjs/core";
 import { ROLES_KEY } from "../decorator/role.decorator";
 
-// export const RoleGuard = (role: Role): Type<CanActivate> => {
-//   class RoleGuardMixin extends AuthGuard('jwt') {
-//
-//     constructor(
-//       private userService: UserService
-//     ) {
-//       super();
-//     }
-//     async canActivate(context: ExecutionContext) {
-//       await super.canActivate(context);
-//
-//       const serice = UserService
-//
-//       const request = context.switchToHttp().getRequest<RequestWithUserDto>();
-//       const user = request.user;
-//       const userWithRole = await this.userService.findUserWithRole(user.email)
-//       console.log(userWithRole)
-//
-//       return userWithRole.includes(role);
-//     }
-//   }
-//
-//   return mixin(RoleGuardMixin);
-// }
-
-// export default RoleGuard;
 
 @Injectable()
 export class RoleGuard extends JwtLocalGuard implements CanActivate {
