@@ -30,6 +30,13 @@ export class UserController {
   }
 
   @UseGuards(RoleGuard)
+  @Roles(Role.USER)
+  @Get('my-orders')
+  myOrders(@Request() request){
+    return this.userService.findCart(request.user)
+  }
+
+  @UseGuards(RoleGuard)
   @Roles(Role.ADMIN)
   @Get()
   find(){

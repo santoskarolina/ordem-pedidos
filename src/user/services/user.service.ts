@@ -111,4 +111,24 @@ export class UserService {
     const profile = user.profile.map(p => p.role)
     return profile
   }
+
+  async findCart(user_online: any){
+    const user = await this.userRepository.findOne( {
+      where: {
+        email: user_online.email
+      },
+      select: ['user_id'],
+      relations: ['orders', 'orders.order_items', 'orders.order_items.product']
+    })
+
+    if(!user){
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: 'not found',
+        message: 'user not found'
+      }, HttpStatus.BAD_REQUEST)
+    }
+
+    return user
+  }
 }
