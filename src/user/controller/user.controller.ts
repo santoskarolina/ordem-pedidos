@@ -2,12 +2,9 @@ import { Body, Controller, Get, Param, Post, Request, UseGuards } from "@nestjs/
 import { UserService } from "../services/user.service";
 import { CreateUserDto } from "../dto/create-user.dto";
 import { CreateAddressDto } from "../../address/dto/addredd.dto";
-import { JwtLocalGuard } from "../../auth/guards/jwt-auth.guard";
-// import RoleGuard from "../../auth/guards/role.guard";
 import { Role } from "../entities/role.entity";
 import { Roles } from "../../authorization/decorator/role.decorator";
 import { RoleGuard } from "../../authorization/guards/role.guard";
-// import { RoleGuard } from "../../auth/guards/role.guard";
 
 @Controller('user')
 export class UserController {
@@ -38,4 +35,5 @@ export class UserController {
   find(){
     return this.userService.find()
   }
+
 }

@@ -32,7 +32,7 @@ import { AuthorizationModule } from './authorization/authorization.module';
       cli: {
         migrationsDir: 'src/db/migrations',
       },
-      synchronize: true,
+      synchronize: false,
     }),
     ProductModule,
     CategoryModule,
